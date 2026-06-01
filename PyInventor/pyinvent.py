@@ -94,7 +94,10 @@ class com_obj(object):
         self.compdef = self.invPartDoc.ComponentDefinition
         
         #Opened document handle
-        self.oDoc=self.invAppCom.ActiveDocument
+        try:
+            self.oDoc = self.invDoc
+        except AttributeError:
+            self.oDoc = self.invApp.ActiveDocument
         
         #create command manager
         self.cmdManager=self.invApp.CommandManager
